@@ -3,6 +3,10 @@ export function getUserModel(connection) {
 	return connection.model(
 		'User',
 		new Schema({
+			login: {
+				type: String,
+				require: false,
+			},
 			avatar: {
 				type: String,
 			},

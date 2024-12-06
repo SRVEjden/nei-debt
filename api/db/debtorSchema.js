@@ -11,6 +11,9 @@ export function getDebtorModel(connection) {
 				type: String,
 				require: true,
 			},
+			avatar: {
+				type: String,
+			},
 		})
 	);
 }

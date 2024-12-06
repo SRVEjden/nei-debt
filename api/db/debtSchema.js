@@ -14,6 +14,10 @@ export function getDebtModel(connection) {
 			date: {
 				type: String,
 			},
+			creditorId: {
+				type: String,
+				require: true,
+			},
 		})
 	);
 }

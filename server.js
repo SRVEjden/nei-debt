@@ -1,6 +1,7 @@
 import express from 'express';
 import next from 'next';
 import { debtRouter } from './api/debt.js';
+import { neiDebtRouter } from './api/nei-debt.js';
 const port = parseInt(process.env.PORT || '3000', 10);
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
@@ -13,6 +14,7 @@ app
 		server.use(express.urlencoded({ extended: true }));
 		server.use(express.json());
 		server.use('/api/debt', debtRouter);
+		server.use('/api', neiDebtRouter);
 		server.get('*', (req, res) => {
 			return handle(req, res);
 		});

@@ -1,11 +1,10 @@
 import express from 'express';
 import { getDbConnection } from './db/connection.js';
 import { getDebtModel } from './db/debtSchema.js';
-
 const router = express.Router();
 
 router.post('/add', async (req, res) => {
-	const { debtorId, sumOfDebt, date } = req.body;
+	const { debtorId, sumOfDebt, date, creditorId } = req.body;
 	try {
 		const connection = await getDbConnection();
 		const debtSchema = getDebtModel(connection);
@@ -13,6 +12,7 @@ router.post('/add', async (req, res) => {
 			debtorId,
 			sumOfDebt,
 			date,
+			creditorId,
 		});
 		await newDebt.save();
 		connection.close();
@@ -24,7 +24,7 @@ router.post('/add', async (req, res) => {
 });
 
 router.post('/edit', async (req, res) => {
-	const { _id, debtorId, sumOfDebt, date } = req.body;
+	const { _id, debtorId, sumOfDebt, date, creditorId } = req.body;
 	try {
 		const connection = await getDbConnection();
 		const debtSchema = getDebtModel(connection);
@@ -32,6 +32,7 @@ router.post('/edit', async (req, res) => {
 			debtorId,
 			sumOfDebt,
 			date,
+			creditorId,
 		});
 		connection.close();
 		if (result) {
