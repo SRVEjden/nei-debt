@@ -9,6 +9,7 @@ export function getUserModel(connection) {
 			},
 			avatar: {
 				type: String,
+				default: '',
 			},
 			firstName: {
 				type: String,
