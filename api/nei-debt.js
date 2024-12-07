@@ -16,20 +16,27 @@ router.get('/getNeiDebtors/:id', async (req, res) => {
 			},
 			'sumOfDebt debtorId creditorId date'
 		);
-		connection.close();
 		const listOfDebtorsUnique = new Set();
 		const result = [];
 		listOfDebts.map(debtor => {
 			listOfDebtorsUnique.add(debtor.debtorId);
 		});
-		listOfDebtorsUnique.forEach(debtorId => {
+		listOfDebtorsUnique.forEach(async debtorId => {
 			const sumOfDebt = listOfDebts
 				.filter(debt => debt.debtorId == debtorId)
 				.reduce((acc, curr) => acc + curr.sumOfDebt, 0);
-			result.push({ debtorId, sumOfDebt });
+			const debtor = await debtModel.findById(debtorId);
+			result.push({
+				debtorId,
+				sumOfDebt,
+				avatar: debtor.avatar,
+				firstName: debtor.firstName,
+				secondName: debtor.secondName,
+			});
 		});
 
 		res.status(200).json(result);
+		return connection.close();
 	} catch (error) {
 		console.log(error);
 		res.status(500).send({ message: 'Internal Server Error' });

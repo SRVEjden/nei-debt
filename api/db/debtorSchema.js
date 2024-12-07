@@ -13,6 +13,7 @@ export function getDebtorModel(connection) {
 			},
 			avatar: {
 				type: String,
+				default: '',
 			},
 		})
 	);
