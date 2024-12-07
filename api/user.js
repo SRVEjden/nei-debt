@@ -13,7 +13,7 @@ router.post('/register', async (req, res) => {
 		});
 		if (user) {
 			connection.close();
-			res
+			return res
 				.status(200)
 				.send({ message: 'Пользователь с таким именем уже существует' });
 		}
