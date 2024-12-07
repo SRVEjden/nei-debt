@@ -1,7 +1,7 @@
 import passport from 'passport';
 import { Strategy } from 'passport-local';
 import { getDbConnection } from '../api/db/connection.js';
-import { getUserModel } from '../api/db/userSchema.js';
+import { getUserModel } from '../api/db/schemas/userSchema.js';
 
 passport.serializeUser((user, done) => {
 	done(null, user._id);

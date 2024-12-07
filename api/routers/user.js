@@ -1,6 +1,6 @@
 import express from 'express';
-import { getDbConnection } from './db/connection.js';
-import { getUserModel } from './db/userSchema.js';
+import { getDbConnection } from '../db/connection.js';
+import { getUserModel } from '../db/schemas/userSchema.js';
 const router = express.Router();
 
 router.post('/register', async (req, res) => {
@@ -25,10 +25,10 @@ router.post('/register', async (req, res) => {
 		});
 		await newUser.save();
 		connection.close();
-		res.status(200).send({ message: 'Created', id: newUser._id });
+		return res.status(200).send({ message: 'Created', id: newUser._id });
 	} catch (error) {
 		console.log(error);
-		res.status(500).send({ message: 'Internal Server Error' });
+		return res.status(500).send({ message: 'Internal Server Error' });
 	}
 });
 export { router as 'userRouter' };

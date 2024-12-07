@@ -1,6 +1,6 @@
 import express from 'express';
-import { getDbConnection } from './db/connection.js';
-import { getDebtModel } from './db/debtSchema.js';
+import { getDbConnection } from '../db/connection.js';
+import { getDebtModel } from '../db/schemas/debtSchema.js';
 const router = express.Router();
 async function getDebtList(listOfDebtorsUnique, id, debtModel) {
 	return listOfDebts;
@@ -39,7 +39,7 @@ router.get('/getNeiDebtors/:id', async (req, res) => {
 		return connection.close();
 	} catch (error) {
 		console.log(error);
-		res.status(500).send({ message: 'Internal Server Error' });
+		return res.status(500).send({ message: 'Internal Server Error' });
 	}
 });
 
@@ -57,13 +57,13 @@ router.get('/getNeiDebtor/:creditorId/:debtorId', async (req, res) => {
 		);
 		connection.close();
 		if (listOfDebts) {
-			res.status(200).json(listOfDebts);
+			return res.status(200).json(listOfDebts);
 		} else {
-			res.status(200).send({ message: 'Debts not founded' });
+			return res.status(200).send({ message: 'Debts not founded' });
 		}
 	} catch (error) {
 		console.log(error);
-		res.status(500).send({ message: 'Internal Server Error' });
+		return res.status(500).send({ message: 'Internal Server Error' });
 	}
 });
 export { router as 'neiDebtRouter' };
