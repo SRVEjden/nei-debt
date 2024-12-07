@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import express from 'express';
 import next from 'next';
 import { middlewaresInitialization } from './api/middlewares/middlewaresInitialization.js';
