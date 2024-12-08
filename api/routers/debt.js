@@ -1,6 +1,6 @@
 import express from 'express';
-import { getDbConnection } from './db/connection.js';
-import { getDebtModel } from './db/debtSchema.js';
+import { getDbConnection } from '../db/connection.js';
+import { getDebtModel } from '../db/schemas/debtSchema.js';
 const router = express.Router();
 
 router.post('/add', async (req, res) => {
@@ -16,10 +16,10 @@ router.post('/add', async (req, res) => {
 		});
 		await newDebt.save();
 		connection.close();
-		res.status(200).send({ message: 'Debt added', id: newDebt._id });
+		return res.status(200).send({ message: 'Debt added', id: newDebt._id });
 	} catch (error) {
 		console.log(error);
-		res.status(500).send({ message: 'Internal server error' });
+		return res.status(500).send({ message: 'Internal server error' });
 	}
 });
 
