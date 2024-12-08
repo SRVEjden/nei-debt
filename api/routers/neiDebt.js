@@ -1,15 +1,15 @@
 import express from 'express';
 import { getDbConnection } from '../db/connection.js';
 import { getDebtModel } from '../db/schemas/debtSchema.js';
+import { getDebtorModel } from '../db/schemas/debtorSchema.js';
 const router = express.Router();
-async function getDebtList(listOfDebtorsUnique, id, debtModel) {
-	return listOfDebts;
-}
+
 router.get('/getNeiDebtors/:id', async (req, res) => {
 	const id = req.params.id;
 	try {
 		const connection = await getDbConnection();
 		const debtModel = getDebtModel(connection);
+		const debtorModel = getDebtorModel(connection);
 		const listOfDebts = await debtModel.find(
 			{
 				creditorId: id,
@@ -25,7 +25,7 @@ router.get('/getNeiDebtors/:id', async (req, res) => {
 			const sumOfDebt = listOfDebts
 				.filter(debt => debt.debtorId == debtorId)
 				.reduce((acc, curr) => acc + curr.sumOfDebt, 0);
-			const debtor = await debtModel.findById(debtorId);
+			const debtor = await debtorModel.findById(debtorId);
 			result.push({
 				debtorId,
 				sumOfDebt,
