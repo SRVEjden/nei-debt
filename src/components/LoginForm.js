@@ -3,8 +3,8 @@
 function LoginForm({ children }) {
     return (
         <div className="h-screen flex justify-center items-center">
-            <div className="login-form shadow-lg p-6 rounded-md flex flex-col">
-                <label className="input input-bordered flex items-center gap-2 m-2.5">
+            <div className="login-form shadow-lg p-6 rounded-md flex flex-col bg-secondary max-w-xs">
+                <label className="input input-bordered flex items-center gap-2 m-2.5 bg-secondary-content text-secondary">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 16 16"
@@ -18,7 +18,7 @@ function LoginForm({ children }) {
                     <input type="text" className="grow" placeholder="Username or email" />
                 </label>
 
-                <label className="input input-bordered flex items-center gap-2 m-2.5">
+                <label className="input input-bordered flex items-center gap-2 m-2.5 bg-secondary-content text-secondary">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 16 16"

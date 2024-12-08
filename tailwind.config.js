@@ -14,6 +14,9 @@ module.exports = {
       },
     },
   },
+  daisyui: {
+    themes: ["synthwave", "cyberpunk", "aqua"]
+  },
   plugins: [
       daisyui,
   ],

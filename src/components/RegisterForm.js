@@ -3,8 +3,8 @@ import React from 'react';
 function RegisterForm(props) {
     return (
         <div className="h-screen flex justify-center items-center">
-            <div className="register-form shadow-lg p-6 rounded-md flex flex-col">
-                <label className="input input-bordered flex items-center gap-2 m-2.5">
+            <div className="register-form shadow-lg p-6 rounded-md flex flex-col bg-secondary max-w-xs">
+                <label className="input input-bordered flex items-center gap-2 m-2.5 bg-secondary-content text-secondary">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 16 16"
@@ -17,7 +17,7 @@ function RegisterForm(props) {
                     </svg>
                     <input type="text" className="grow" placeholder="Email" />
                 </label>
-                <label className="input input-bordered flex items-center gap-2 m-2.5">
+                <label className="input input-bordered flex items-center gap-2 m-2.5 bg-secondary-content text-secondary">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 16 16"
@@ -28,7 +28,7 @@ function RegisterForm(props) {
                     </svg>
                     <input type="text" className="grow" placeholder="Username" />
                 </label>
-                <label className="input input-bordered flex items-center gap-2 m-2.5">
+                <label className="input input-bordered flex items-center gap-2 m-2.5 bg-secondary-content text-secondary">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 16 16"
@@ -44,7 +44,7 @@ function RegisterForm(props) {
 
                 <button className="btn btn-accent w-2/6 m-2.5 mx-auto">Register</button>
 
-                <button className="btn btn-link m-2.5">Already have an account?</button>
+                <button className="btn btn-secondary-content m-2.5 ">Already have an account?</button>
             </div>
         </div>
     );
