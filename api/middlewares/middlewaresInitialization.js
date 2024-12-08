@@ -1,14 +1,15 @@
 import cookieParser from 'cookie-parser';
+import 'dotenv/config';
 import express from 'express';
 import session from 'express-session';
 import passport from 'passport';
 const router = express.Router();
 router.use(express.urlencoded({ extended: true }));
 router.use(express.json());
-router.use(cookieParser('HelloWorld'));
+router.use(cookieParser(process.env.SECRET_SESSION));
 router.use(
 	session({
-		secret: 'secretWord',
+		secret: process.env.SECRET_COOKIE,
 		saveUninitialized: false,
 		resave: false,
 		cookie: {
