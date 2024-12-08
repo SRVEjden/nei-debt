@@ -26,12 +26,12 @@ export default passport.use(
 		try {
 			const connection = await getDbConnection();
 			const userModel = getUserModel(connection);
-			const user = await userModel.findOne({ login: username });
+			const user = await userModel.findOne({ login: username }, 'login firstName secondName avatar password');
 			if (!user) throw Error('User not found');
 			if (user.password != password) throw Error('Invalid credentials');
 			done(null, user);
 		} catch (error) {
-			done(err, null);
+			done(error, null);
 		}
 	})
 );
