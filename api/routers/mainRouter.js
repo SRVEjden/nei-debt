@@ -10,5 +10,5 @@ router.use('/api/debt', debtRouter);
 router.use('/api/neiDebt', neiDebtRouter);
 router.use('/api/user', userRouter);
 router.use('/api', authRouter);
-router.use('/api', debtorRouter);
+router.use('/api/debtor', debtorRouter);
 export { router as 'mainRouter' };

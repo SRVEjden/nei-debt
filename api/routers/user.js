@@ -5,7 +5,6 @@ const router = express.Router();
 
 router.post('/register', async (req, res) => {
 	const { firstName, secondName, password, login } = req.body;
-	console.log(req.body);
 	try {
 		const connection = await getDbConnection();
 		const userModel = await getUserModel(connection);

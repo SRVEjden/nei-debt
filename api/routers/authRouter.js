@@ -3,9 +3,9 @@ import passport from 'passport';
 const router = express.Router();
 
 router.post('/auth', passport.authenticate('local'), (req, res) => {
-	const userJSON = req.user.toJSON();
-	delete userJSON.password;
-	return res.status(200).json(userJSON);
+	const user = JSON.parse(JSON.stringify(req.user));
+	delete user.password;
+	res.status(200).json(user);
 });
 router.get('/auth/status', (req, res) => {
 	if (req.user) return res.status(200).json(req.user);

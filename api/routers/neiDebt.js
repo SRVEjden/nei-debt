@@ -25,7 +25,6 @@ router.get('/getNeiDebtors/:id', async (req, res) => {
 			const sumOfDebt = listOfDebts
 				.filter(debt => debt.debtorId == debtorId)
 				.reduce((acc, curr) => acc + curr.sumOfDebt, 0);
-			const debtor = await debtModel.findById(debtorId);
 			result.push({
 				debtorId,
 				sumOfDebt,

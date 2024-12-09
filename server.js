@@ -5,7 +5,7 @@ import { mainRouter } from './api/routers/mainRouter.js';
 import './strategies/local-strategy.js';
 const port = parseInt(process.env.PORT || '3000', 10);
 const dev = process.env.NODE_ENV !== 'production';
-const app = next({ dev });
+const app = next({ dev, customServer: true });
 const handle = app.getRequestHandler();
 
 app
