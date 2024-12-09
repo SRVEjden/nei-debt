@@ -21,7 +21,7 @@ router.get('/getNeiDebtors/:id', async (req, res) => {
 		listOfDebts.map(debtor => {
 			listOfDebtorsUnique.add(debtor.debtorId);
 		});
-		listOfDebtorsUnique.forEach(async debtorId => {
+		for (const debtorId of listOfDebtorsUnique) {
 			const sumOfDebt = listOfDebts
 				.filter(debt => debt.debtorId == debtorId)
 				.reduce((acc, curr) => acc + curr.sumOfDebt, 0);
@@ -29,11 +29,8 @@ router.get('/getNeiDebtors/:id', async (req, res) => {
 			result.push({
 				debtorId,
 				sumOfDebt,
-				avatar: debtor.avatar,
-				firstName: debtor.firstName,
-				secondName: debtor.secondName,
 			});
-		});
+		}
 
 		res.status(200).json(result);
 		return connection.close();

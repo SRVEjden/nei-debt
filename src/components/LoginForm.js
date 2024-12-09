@@ -1,6 +1,5 @@
 
-
-function LoginForm({onClick, onAuthSuccess}) {
+function LoginForm({onClick, onAuthSuccess, router}) {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
@@ -24,8 +23,7 @@ function LoginForm({onClick, onAuthSuccess}) {
             const result = await response.json();
             localStorage.setItem('user', JSON.stringify(result));
 
-            onAuthSuccess();
-            console.log('Авторизация успешна');
+            router.push(`/debts/${result._id}`);
         } catch (error) {
             console.error('Ошибка:', error);
         }
