@@ -1,9 +1,36 @@
 
+function LoginForm({onClick, onAuthSuccess, router}) {
+    const handleSubmit = async (event) => {
+        event.preventDefault();
 
-function LoginForm({ children }) {
+        const formData = new FormData(event.target);
+        const json = Object.fromEntries(formData);
+
+
+        try {
+            const response = await fetch('/api/auth', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(json),
+            });
+
+            if (!response.status == 200) {
+                throw new Error('Ошибка при авторизации');
+            }
+
+            const result = await response.json();
+            localStorage.setItem('user', JSON.stringify(result));
+
+            router.push(`/debts/${result._id}`);
+        } catch (error) {
+            console.error('Ошибка:', error);
+        }
+    }
     return (
         <div className="h-screen flex justify-center items-center">
-            <div className="login-form shadow-lg p-6 rounded-md flex flex-col bg-secondary max-w-xs">
+            <form onSubmit={handleSubmit} className="login-form shadow-lg p-6 rounded-md flex flex-col bg-secondary max-w-xs">
                 <label className="input input-bordered flex items-center gap-2 m-2.5 bg-secondary-content text-secondary">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -15,7 +42,7 @@ function LoginForm({ children }) {
                         <path
                             d="M15 6.954 8.978 9.86a2.25 2.25 0 0 1-1.956 0L1 6.954V11.5A1.5 1.5 0 0 0 2.5 13h11a1.5 1.5 0 0 0 1.5-1.5V6.954Z" />
                     </svg>
-                    <input type="text" className="grow" placeholder="Username or email" />
+                    <input name="login" type="text" className="grow" placeholder="Email" />
                 </label>
 
                 <label className="input input-bordered flex items-center gap-2 m-2.5 bg-secondary-content text-secondary">
@@ -29,11 +56,13 @@ function LoginForm({ children }) {
                             d="M14 6a4 4 0 0 1-4.899 3.899l-1.955 1.955a.5.5 0 0 1-.353.146H5v1.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-2.293a.5.5 0 0 1 .146-.353l3.955-3.955A4 4 0 1 1 14 6Zm-4-2a.75.75 0 0 0 0 1.5.5.5 0 0 1 .5.5.75.75 0 0 0 1.5 0 2 2 0 0 0-2-2Z"
                             clipRule="evenodd" />
                     </svg>
-                    <input type="password" className="grow" placeholder="Password" />
+                    <input name="password" type="password" className="grow" placeholder="Password" />
                 </label>
 
                 <button className="btn btn-success w-2/6 m-2.5 mx-auto">Login</button>
-            </div>
+
+                <button className="btn btn-secondary-content m-2.5 " onClick={onClick}>I don't have an account</button>
+            </form>
         </div>
     );
 }
