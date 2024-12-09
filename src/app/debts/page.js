@@ -1,22 +1,12 @@
-'use client'
-import {useEffect, useState} from "react";
+import Protected from '@/components/Protected';
 
-async function fetchData(user) {
-    const response = await fetch(`/api/getNeiDebtors/${user._id}`)
-    const result = await response.json();
-    console.log(result);
-}
 function DebtsPage(props) {
-    const [user, setUser] = useState(null);
-    const [debtors, setDebtors] = useState([]);
-    useEffect(() => {
-        setUser(prevState => prevState = JSON.parse(localStorage.getItem('user')));
-            fetchData(user);
-    }, []);
-
-    return (
-        <div>Хуйня</div>
-    );
+	return (
+		<div>
+			<Protected />
+			<div>Хуйня</div>
+		</div>
+	);
 }
 
 export default DebtsPage;

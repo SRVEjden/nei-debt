@@ -7,6 +7,7 @@ export default function Home() {
 	const { user, login, logout } = useAuth();
 	const isAuth = user && user._id;
 	const router = useRouter();
+	//`)
 	return (
 		<AuthContext.Provider value={{ user, login, logout, isAuth }}>
 			<div className={'home-page'}>

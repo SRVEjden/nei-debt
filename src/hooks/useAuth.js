@@ -14,7 +14,6 @@ export default function useAuth() {
 	}, []);
 	useEffect(() => {
 		const data = JSON.parse(localStorage.getItem('user'));
-		console.log(data);
 		if (data && data._id) {
 			setUser(data);
 		}
